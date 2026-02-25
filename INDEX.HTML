@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background: hotpink;
+    color: white;
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#countdown {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+#message {
+    padding: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.slideshow {
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.slideshow img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" src="tumsehi.mp3.mpeg" loop></audio>
+
+<!-- COUNTDOWN -->
+<div id="countdownBox" class="center">
+    <div id="countdown">5</div>
+</div>
+
+<!-- NAME INPUT -->
+<div id="nameBox" class="center hidden">
+    <h2>Hello cutiee 💖<br>What's your name?</h2>
+    <input type="text" id="girlName" placeholder="Enter your name">
+    <br><br>
+    <button onclick="showWish()">Submit</button>
+</div>
+
+<!-- BIRTHDAY MESSAGE -->
+<div id="wishBox" class="center hidden">
+    <div id="message"></div>
+    <br>
+    <button onclick="showPhotos()">Next ➜</button>
+</div>
+
+<!-- SLIDESHOW -->
+<div id="photoBox" class="center hidden">
+    <h2>Our Beautiful Memories 💕</h2>
+    <div class="slideshow">
+        <img id="slideImg" src="img1.jpg">
+    </div>
+</div>
+
+<script>
+let count = 5;
+let countdownInterval = setInterval(() => {
+    document.getElementById("countdown").innerText = count;
+    count--;
+    if (count < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdownBox").classList.add("hidden");
+        document.getElementById("nameBox").classList.remove("hidden");
+    }
+}, 1000);
+
+function showWish() {
+    let name = document.getElementById("girlName").value;
+    if (name === "") {
+        alert("Please enter your name 💕");
+        return;
+    }
+
+    document.getElementById("bgMusic").play();
+
+    document.getElementById("nameBox").classList.add("hidden");
+    document.getElementById("wishBox").classList.remove("hidden");
+
+    document.getElementById("message").innerHTML =
+    "Hello <b>" + name + "</b> 💖<br><br>" +
+    "Happiest happy birthday to you 🎉🎂<br>" +
+    "It's your 18th birthday and I’m very glad that you are with me.<br><br>" +
+    "I pray that this birthday brings lots of love and happiness in your life,<br>" +
+    "all your prayers come true and you always stay happy.<br><br>" +
+    "Stay happy, stay blessed 💕<br>" +
+    "Happy Birthday once again ❤️<br><br>" +
+    "<b>I love you 💖</b>";
+}
+
+let images = ["img1.jpg.jpg","img8.jpg.jpg","img2.jpg.jpg","img9.jpg.jpg","img3.jpg.jpg","img10.jpg.jpg","img4.jpg.jpg","img11.jpg.jpg","img5.jpg.jpg","img12.jpg.jpg","img6.jpg.jpg","img13.jpg.jpg","img14.jpg.jpg","img7.jpg.jpg","img15.jpg.jpg","img16.jpg.jpg","img17.jpg.jpg"];
+let index = 0;
+
+function showPhotos() {
+    document.getElementById("wishBox").classList.add("hidden");
+    document.getElementById("photoBox").classList.remove("hidden");
+
+    setInterval(() => {
+        index++;
+        if (index >= images.length) index = 0;
+        document.getElementById("slideImg").src = images[index];
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
